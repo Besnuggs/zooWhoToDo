@@ -10,58 +10,102 @@ import {Card} from 'react-native-paper';
 import Landing from './components/Views/Landing';
 import PrimaryInput from './components/Utility/PrimaryInput';
 import PrimaryButton from './components/Utility/PrimaryButton';
+import ListTaskLists from './components/Views/ListTaskLists';
+import { uuid } from 'uuidv4'
 
 const App = () => {
+  const date = new Date();
+  const testList = [
+    {
+    name: 'firstList',
+    tasks: ['this is a task',
+    'okay',
+    'okay1',
+    'okay2',
+    'okay3',
+    'okay4',
+    ],
+    uuid: 1,
+    dateCreated: date.toDateString()
+    },
+    {
+    name: 'secondList',
+    tasks: ['this is a task',
+    'okay',
+    'okay1',
+    'okay2',
+    'okay3',
+    'okay4',
+    ],
+    uuid: 2,
+    dateCreated: date.toDateString()
+    },
+    {
+    name: 'thirdList',
+    tasks: ['this is a task',
+    'okay',
+    'okay1',
+    'okay2',
+    'okay3',
+    'okay4',
+    ],
+    uuid: 3,
+    dateCreated: date.toDateString()
+    }
+  ]
 
-const useEffect = (() => {
-  AsyncStorage.getItem('user')
-    .then((response) => JSON.parse(response))
-    .then((user) => {
-      if(user){
-        setUserData({name: user})
-      }
-    })
+
+  const useEffect = (() => {
+    AsyncStorage.getItem('user')
+      .then((response) => JSON.parse(response))
+      .then((username) => {
+        if(username){
+          setUserData({name: username, displayLists: true})
+        }
+      })
 
 
-}, [])
+  }, [])
 
 
-const setUserName = (name) => {
-  setUserData({name});
-}
-
-const setLists = (lists) => {
-
-}
-
-const createUser = (text) => {
-  setUserData({newUser: text})
-}
-
-const validateUserAndRenderListCreation = () => {
-  if(!user.newUser){
-    Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
-  } else {
-    setUserData({displayLists: true, name: user.newUser})
+  const setUserName = (name) => {
+    setUserData({name});
   }
-}
 
-const [user, setUserData] = useState({
-  name: '',
-  newUser: '',
-  toDoLists: [],
-  displayLists: false
-});
+  const setLists = (lists) => {
+
+  }
+
+  const createUser = (text) => {
+    setUserData({newUser: text})
+  }
+
+  const validateUserAndRenderListCreation = () => {
+    if(!user.newUser){
+      Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
+    } else {
+      setUserData({displayLists: true, name: user.newUser})
+    }
+  }
+
+  const [user, setUserData] = useState({
+    name: '',
+    newUser: '',
+    toDoLists: testList,
+    displayLists: false
+  });
 
   return(
     <View
     style={styles.container}
     >
       {
-        user.name ? 
-        <Text>
-          {`Welcome back, ${user.name}`}
-        </Text> 
+        user.displayLists ? 
+          <ListTaskLists
+            lists={user.toDoLists}
+            name={user.name}
+
+          />
         : 
         <Landing 
           createUser={createUser}
