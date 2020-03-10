@@ -76,11 +76,14 @@ const [user, setUserData] = useState({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
     // flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 100
+    marginTop: 1,
+    height: '100%',
+    width: '100%'
   },
   logo: {
 
