@@ -6,13 +6,22 @@ import {View,
         TouchableOpacity,
         Animated,
         Alert} from 'react-native';
+import {Card} from 'react-native-paper';
+import Landing from './components/Views/Landing';
 import PrimaryInput from './components/Utility/PrimaryInput';
 import PrimaryButton from './components/Utility/PrimaryButton';
 
 const App = () => {
 
 const useEffect = (() => {
-  AsyncStorage.getItem('user').then((response) => JSON.parse(response))
+  AsyncStorage.getItem('user')
+    .then((response) => JSON.parse(response))
+    .then((user) => {
+      if(user){
+        setUserData({name: user})
+      }
+    })
+
 
 }, [])
 
@@ -29,53 +38,47 @@ const createUser = (text) => {
   setUserData({newUser: text})
 }
 
-const validateUserAndRouteToListCreation = () => {
+const validateUserAndRenderListCreation = () => {
   if(!user.newUser){
     Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
   } else {
-
+    setUserData({displayLists: true, name: user.newUser})
   }
 }
 
 const [user, setUserData] = useState({
   name: '',
   newUser: '',
-  toDoLists: []
+  toDoLists: [],
+  displayLists: false
 });
 
   return(
-    <View>
-      
+    <View
+    style={styles.container}
+    >
       {
         user.name ? 
         <Text>
           {`Welcome back, ${user.name}`}
         </Text> 
         : 
-        <View>
-          <Text>Let's get started!</Text>
-          <PrimaryInput
-            label='First name'
-            value={user.newUser}
-            handleText={createUser}
-            name='newUser'
-          />
-         
-            <PrimaryButton 
-              label="Create Your First ToDo List."
-              handlePress={validateUserAndRouteToListCreation}
-            />
-          
-        </View>
+        <Landing 
+          createUser={createUser}
+          newUser={user.newUser}
+          validateUserAndRenderListCreation={validateUserAndRenderListCreation}
+
+        /> 
       }
-    
     </View>
   )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
-    
+    backgroundColor: '#fff',
+    flex: 1,
+    justifyContent: 'center'
   },
   logo: {
 
