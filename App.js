@@ -4,7 +4,10 @@ import {View,
         StyleSheet, 
         AsyncStorage, 
         TouchableOpacity,
-        Animated} from 'react-native';
+        Animated,
+        Alert} from 'react-native';
+import PrimaryInput from './components/Utility/PrimaryInput';
+import PrimaryButton from './components/Utility/PrimaryButton';
 
 const App = () => {
 
@@ -22,8 +25,21 @@ const setLists = (lists) => {
 
 }
 
+const createUser = (text) => {
+  setUserData({newUser: text})
+}
+
+const validateUserAndRouteToListCreation = () => {
+  if(!user.newUser){
+    Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
+  } else {
+
+  }
+}
+
 const [user, setUserData] = useState({
-  name: '', 
+  name: '',
+  newUser: '',
   toDoLists: []
 });
 
@@ -37,12 +53,19 @@ const [user, setUserData] = useState({
         </Text> 
         : 
         <View>
-          <Text>Let's get started!</Text> 
-          <TouchableOpacity>
-            <Text>
-             Create Your ToDo.
-            </Text>
-          </TouchableOpacity>
+          <Text>Let's get started!</Text>
+          <PrimaryInput
+            label='First name'
+            value={user.newUser}
+            handleText={createUser}
+            name='newUser'
+          />
+         
+            <PrimaryButton 
+              label="Create Your First ToDo List."
+              handlePress={validateUserAndRouteToListCreation}
+            />
+          
         </View>
       }
     
