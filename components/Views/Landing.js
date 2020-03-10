@@ -11,34 +11,48 @@ const Landing = (props) => {
         <Card
             style={styles.mainLandingContainer}
         >
-            <Headline>ZooWho ToDo</Headline>
-            <Title>Let's get started!</Title>
-            <PrimaryInput
-                label='First name'
-                value={newUser}
-                handleText={createUser}
-                style={styles.input}
-            />
-            
-            <PrimaryButton 
-                label="Create Your First ToDo List."
-                handlePress={validateUserAndRenderListCreation}
-            />
+            <Card.Title
+                style={styles.title}
+                title="ZooWho ToDo App" 
+                subtitle="Let's get started!"
+            >
+            </Card.Title>
+            <Card.Cover source={{ uri: 'https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' }} />
+            <Card.Actions>
+                <PrimaryInput
+                    label='First name'
+                    value={newUser}
+                    handleText={createUser}
+                    style={styles.input}
+                />
+                
+                <PrimaryButton 
+                    label="Create Your First ToDo List."
+                    handlePress={validateUserAndRenderListCreation}
+                    
+                />
+             </Card.Actions>
       </Card>
     )
 }
 
 const styles = StyleSheet.create({
     mainLandingContainer: {
-        width: '75%',
+        width: '85%',
         justifyContent: 'center',
-        // alignItems: 'flex-start',
         margin: 'auto',
-        display: 'flex'
+        display: 'flex',
+        height: 400
+    },
+    title: {
+        // padding: 10
     },
     input: {
         height: 35
-    }
+    },
+    // button: {
+    //     borderColor: '#000'
+    // }
 })
 
 export default Landing
