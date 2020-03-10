@@ -20,7 +20,7 @@ const Landing = (props) => {
 
             <Card.Cover source={{ uri: 'https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' }} />
 
-            <Card.Actions
+            <Card.Content
                 style={styles.actions}
             >
                 <PrimaryInput
@@ -35,7 +35,7 @@ const Landing = (props) => {
                     handlePress={validateUserAndRenderListCreation}
                     
                 />
-             </Card.Actions>
+             </Card.Content>
       </Card>
     )
 }
@@ -47,11 +47,15 @@ const styles = StyleSheet.create({
         margin: 'auto',
         display: 'flex',
         height: '90%',
-        backgroundColor: '#000'
+        backgroundColor: '#dde'
     },
     actions: {
         display: 'flex',
-        alignItems: 'center'
+        flex: 1,
+        justifyContent: 'center',
+        alignContent: 'center',
+        padding: 10,
+        margin: 10
     }
     // button: {
     //     borderColor: '#000'
