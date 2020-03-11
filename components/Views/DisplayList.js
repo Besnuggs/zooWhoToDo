@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, 
         Text,
         StyleSheet,
@@ -7,10 +7,14 @@ import {View,
 import {List, Colors} from 'react-native-paper';
 
 const DisplayList = (props) => {
-    const {listName, listId, listToDisplay} = props
+    const {listName, listId, listToDisplay, deleteTaskFromList} = props;
+
+
+useEffect(() => {
+    console.log(listToDisplay)
+}, [listToDisplay])
 
 const renderTasks = () => {
-    console.log(listToDisplay, 'okay??')
     return listToDisplay.map((task,index) => {
         return(
             <List.Item
@@ -18,13 +22,13 @@ const renderTasks = () => {
                 title={task}
                 style={styles.listItem}
                 left={props => <List.Icon 
-                    icon="book" 
+                    icon="pencil" 
                     color={Colors.green900}
                     >
                     </List.Icon>
                 }
                 right={props => <TouchableOpacity
-                                    onPress={() => deleteTaskList(index)}
+                                    onPress={() => deleteTaskFromList(listId, index)}
                                 >
                                     <List.Icon 
                                     icon="delete" 

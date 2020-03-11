@@ -18,7 +18,7 @@ const App = () => {
   const testList = [
     {
     name: 'firstList',
-    tasks: ['this is a task',
+    tasks: ['this is a task1',
     'okay',
     'okay1',
     'okay2',
@@ -30,7 +30,7 @@ const App = () => {
     },
     {
     name: 'secondList',
-    tasks: ['this is a task',
+    tasks: ['this is a task2',
     'okay',
     'okay1',
     'okay2',
@@ -42,7 +42,7 @@ const App = () => {
     },
     {
     name: 'thirdList',
-    tasks: ['this is a task',
+    tasks: ['this is a task3',
     'okay',
     'okay1',
     'okay2',
@@ -73,7 +73,7 @@ const App = () => {
   }
 
   async function updateAsyncLists(){
-    
+
   }
 
   const createUser = (text) => {
@@ -96,13 +96,17 @@ const App = () => {
 
 const deleteTaskFromList = (id, taskId) => {
   //index to taskId as that's what is serving as key in displaylist map.
-  const toDoLists = toDoLists.map((list) => {
+  
+  const toDoLists = user.toDoLists.map((list) => {
+    console.log('LISSSTS', list)
     if(list.id === id){
-      list.tasks.filter((task) => task.id !== taskId);
+      list.tasks = list.tasks.filter((task, index) => index !== taskId);
     }
+    console.log('list:', list)
     return list;
   })
-  setUserData({...user, toDoLists})
+  console.log('EVERYTGIG', toDoLists)
+  setUserData({...user, toDoLists: toDoLists})
   //Need to update AsyncStorage
 }
 
