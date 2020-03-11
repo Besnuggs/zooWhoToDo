@@ -9,7 +9,6 @@ const PrimaryInput = (props) => {
             // value={value}
             label={label}
             style
-            
         />
     )
 }
