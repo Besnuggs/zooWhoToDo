@@ -106,6 +106,10 @@ const deleteTaskFromList = (id, taskId) => {
   //Need to update AsyncStorage
 }
 
+const createList = () => {
+  
+}
+
   const [user, setUserData] = useState({
     name: '',
     newUser: '',
