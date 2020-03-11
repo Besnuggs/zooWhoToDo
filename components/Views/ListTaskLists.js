@@ -11,14 +11,12 @@ import DisplayList from './DisplayList';
 const ListTaskLists = (props) => {
     const {name, lists, deleteTaskList, deleteTaskFromList} = props;
 
-    useEffect(() => {
-        
+    useEffect(() => {  
         if(listData.displayList){
             const listToDisplay = lists.filter((list) => list.id === listData.listId)[0].tasks
             console.log(lists, listToDisplay, 'updated LISTS')
             setListData({...listData, listToDisplay})
-        }
-        
+        }   
     }, [lists])
 
     const renderUsersLists = () => {
@@ -58,11 +56,8 @@ const ListTaskLists = (props) => {
         setListData({...listData, displayList: true, listToDisplay: listToDisplay.tasks, listName, listId});
     }
 
-    
-
     const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName: '', listId: null})
 
-    console.log(lists, listData.listToDisplay, 'updating in listtask')
     return(
         <View>
         {listData.displayList ? 
