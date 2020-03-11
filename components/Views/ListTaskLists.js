@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
-import {View, 
+import {
+        View, 
         Text,
-        StyleSheet
+        StyleSheet,
+        TouchableOpacity
         } from 'react-native';
 import {List, Colors} from 'react-native-paper';
 
@@ -10,24 +12,40 @@ const ListTaskLists = (props) => {
 
     const renderUsersLists = () => {
        return lists.map((list) => {
-           console.log(list)
             return (
                 <List.Item
                     key={list.id}
                     title={list.name}
                     style={styles.listItem}
                     onPress={() => displaySelectedList(list.id)}
-                    left={props => <List.Icon icon="delete"></List.Icon>}
-                    right={props => <List.Icon icon="delete" color={Colors.red900}></List.Icon>}
+                    left={props => <List.Icon 
+                                    icon="book" 
+                                    color={Colors.green900}
+                                    
+                                    >
+                                    </List.Icon>}
+                    right={props => <TouchableOpacity
+                                        onPress={() => deleteTaskList(list.id)}
+                                    >
+                                        <List.Icon 
+                                        icon="delete" 
+                                        color={Colors.red900}
+                                        >
+                                        </List.Icon>
+                                    </TouchableOpacity>
+                                    }
                 />  
             )
         })
     }
 
-    const displaySelectedList = (uuid) => {
-        const listToDisplay = lists.filter((list) => list.uuid === uuid).tasks;
+    const deleteTaskList = (id) => {
+        console.log(id, 'id to be deleted')
+    }
+
+    const displaySelectedList = (id) => {
+        const listToDisplay = lists.filter((list) => list.id === id)[0].tasks;
         setListData({displayList: true, listToDisplay});
-        console.log(listToDisplay);
     }
 
     const [listData, setListData] = useState({displayList: false, listToDisplay: []})
@@ -45,7 +63,8 @@ const styles = StyleSheet.create({
 
     },
     listItem: {
-        width: 300
+        width: 300,
+        borderColor: 'black'
     }
 })
 
