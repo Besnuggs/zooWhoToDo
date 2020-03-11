@@ -97,11 +97,9 @@ const App = () => {
 const deleteTaskFromList = (id, taskId) => {
   //index to taskId as that's what is serving as key in displaylist map.
   const toDoLists = user.toDoLists.map((list) => {
-    console.log('LISSSTS', list)
     if(list.id === id){
       list.tasks = list.tasks.filter((task, index) => index !== taskId);
     }
-    console.log('list:', list)
     return list;
   })
   setUserData({...user, toDoLists: toDoLists})
@@ -115,7 +113,7 @@ const deleteTaskFromList = (id, taskId) => {
     displayLists: false
   });
 
-  // console.log(user.toDoLists)
+  
   return(
     <View
     style={styles.container}
