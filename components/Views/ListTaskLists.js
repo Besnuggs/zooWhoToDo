@@ -54,11 +54,11 @@ const ListTaskLists = (props) => {
 
     
 
-    const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName, listId})
+    const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName: '', listId: null})
 
     return(
         <View>
-        {displayList ? 
+        {listData.displayList ? 
             <DisplayList 
                 listToDisplay={listData.listToDisplay}
                 listName={listData.listName}
