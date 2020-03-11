@@ -6,6 +6,7 @@ import {
         TouchableOpacity
         } from 'react-native';
 import {List, Colors} from 'react-native-paper';
+import DisplayList from './DisplayList';
 
 const ListTaskLists = (props) => {
     const {name, lists, deleteTaskList} = props;
@@ -52,10 +53,18 @@ const ListTaskLists = (props) => {
     const [listData, setListData] = useState({displayList: false, listToDisplay: []})
 
     return(
-        <List.Section>
-            <List.Subheader>{name}'s ToDo List</List.Subheader>
-            {renderUsersLists()}
-        </List.Section>
+        <View>
+        {displayList ? 
+            <DisplayList 
+                listToDisplay={listData.listToDisplay}
+            />
+            :
+            <List.Section>
+                <List.Subheader>{name}'s ToDo List</List.Subheader>
+                {renderUsersLists()}
+            </List.Section>
+        }
+        </View>
     )
 }
 

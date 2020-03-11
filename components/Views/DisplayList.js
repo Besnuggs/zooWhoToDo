@@ -3,11 +3,13 @@ import {View, Text} from 'react-native';
 import {List, Colors} from 'react-native-paper';
 
 const DisplayList = (props) => {
-
+    const {name} = props
     return(
-        <View>
-            <Text>Display List</Text>
+        <List.Section>
+            <List.Subheader>{name}</List.Subheader>
 
-        </View>
+        </List.Section>
     )
 }
+
+export default DisplayList;
