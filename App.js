@@ -60,7 +60,7 @@ const App = () => {
       .then((response) => JSON.parse(response))
       .then((username) => {
         if(username){
-          setUserData({name: username, displayLists: true})
+          setUserData({...user, name: username, displayLists: true})
         }
       })
 
@@ -84,7 +84,7 @@ const App = () => {
     if(!user.newUser){
       Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
     } else {
-      setUserData({displayLists: true, name: user.newUser, toDoLists: testList})
+      setUserData({...user, displayLists: true, name: user.newUser, toDoLists: testList})
     }
   }
 
