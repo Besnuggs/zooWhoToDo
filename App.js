@@ -15,44 +15,44 @@ import { uuid } from 'uuidv4'
 
 const App = () => {
   const date = new Date();
-  const testList = [
-    {
-    name: 'firstList',
-    tasks: ['this is a task1',
-    'okay',
-    'okay1',
-    'okay2',
-    'okay3',
-    'okay4',
-    ],
-    id: 1,
-    dateCreated: date.toDateString()
-    },
-    {
-    name: 'secondList',
-    tasks: ['this is a task2',
-    'okay',
-    'okay1',
-    'okay2',
-    'okay3',
-    'okay4',
-    ],
-    id: 2,
-    dateCreated: date.toDateString()
-    },
-    {
-    name: 'thirdList',
-    tasks: ['this is a task3',
-    'okay',
-    'okay1',
-    'okay2',
-    'okay3',
-    'okay4',
-    ],
-    id: 3,
-    dateCreated: date.toDateString()
-    }
-  ]
+  // const testList = [
+  //   {
+  //   name: 'firstList',
+  //   tasks: ['this is a task1',
+  //   'okay',
+  //   'okay1',
+  //   'okay2',
+  //   'okay3',
+  //   'okay4',
+  //   ],
+  //   id: 1,
+  //   dateCreated: date.toDateString()
+  //   },
+  //   {
+  //   name: 'secondList',
+  //   tasks: ['this is a task2',
+  //   'okay',
+  //   'okay1',
+  //   'okay2',
+  //   'okay3',
+  //   'okay4',
+  //   ],
+  //   id: 2,
+  //   dateCreated: date.toDateString()
+  //   },
+  //   {
+  //   name: 'thirdList',
+  //   tasks: ['this is a task3',
+  //   'okay',
+  //   'okay1',
+  //   'okay2',
+  //   'okay3',
+  //   'okay4',
+  //   ],
+  //   id: 3,
+  //   dateCreated: date.toDateString()
+  //   }
+  // ]
 
 
   const useEffect = (() => {
@@ -84,7 +84,7 @@ const App = () => {
     if(!user.newUser){
       Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
     } else {
-      setUserData({...user, displayLists: true, name: user.newUser, toDoLists: testList})
+      setUserData({...user, displayLists: true, name: user.newUser})
     }
   }
 
