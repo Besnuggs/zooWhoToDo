@@ -1,14 +1,17 @@
 import React from 'react';
 import {View, 
         Text,
-        StyleSheet} from 'react-native';
+        StyleSheet,
+        TouchableOpacity
+        } from 'react-native';
 import {List, Colors} from 'react-native-paper';
 
 const DisplayList = (props) => {
     const {listName, listId, listToDisplay} = props
 
 const renderTasks = () => {
-    listToDisplay.map((task,index) => {
+    console.log(listToDisplay, 'okay??')
+    return listToDisplay.map((task,index) => {
         return(
             <List.Item
                 key={index}
@@ -19,7 +22,7 @@ const renderTasks = () => {
                     color={Colors.green900}
                     >
                     </List.Icon>
-         }
+                }
                 right={props => <TouchableOpacity
                                     onPress={() => deleteTaskList(index)}
                                 >
@@ -29,6 +32,7 @@ const renderTasks = () => {
                                     >
                                     </List.Icon>
                                 </TouchableOpacity>
+                       }
             />
                 
             
@@ -38,8 +42,8 @@ const renderTasks = () => {
 
     return(
         <List.Section>
-            <List.Subheader>{name}</List.Subheader>
-
+            <List.Subheader>{listName}</List.Subheader>
+            {renderTasks()}
         </List.Section>
     )
 }
