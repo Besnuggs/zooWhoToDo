@@ -59,6 +59,10 @@ const ListTaskLists = (props) => {
         setListData({...listData, displayList: true, listToDisplay: listToDisplay.tasks, listName, listId});
     }
 
+    const createList = () => {
+        
+    }
+
     const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName: '', listId: null})
 
     return(
