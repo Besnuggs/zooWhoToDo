@@ -72,8 +72,8 @@ const App = () => {
     setUserData({name});
   }
 
-  const setLists = (lists) => {
-
+  async function updateAsyncLists(){
+    
   }
 
   const createUser = (text) => {
