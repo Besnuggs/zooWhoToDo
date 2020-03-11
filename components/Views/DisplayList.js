@@ -7,7 +7,7 @@ import {View,
 import {List, Colors} from 'react-native-paper';
 
 const DisplayList = (props) => {
-    const {listName, listId, listToDisplay, deleteTaskFromList} = props;
+    const {listName, listId, listToDisplay, deleteTaskFromList, back} = props;
 
 
 useEffect(() => {
@@ -46,6 +46,13 @@ const renderTasks = () => {
 
     return(
         <List.Section>
+            <TouchableOpacity
+                onPress={back}
+            >
+                <Text>
+                Back
+                </Text>
+            </TouchableOpacity>
             <List.Subheader>{listName}</List.Subheader>
             {renderTasks()}
         </List.Section>

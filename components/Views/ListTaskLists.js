@@ -48,6 +48,10 @@ const ListTaskLists = (props) => {
         })
     }
     
+    const back = () => {
+        console.log('back?')
+        setListData({...listData, displayList: false, listToDisplay: [], listName: '', listId: null})
+    }
 
     const displaySelectedList = (id) => {
         const listToDisplay = lists.filter((list) => list.id === id)[0],
@@ -66,6 +70,7 @@ const ListTaskLists = (props) => {
                 listName={listData.listName}
                 listId={listData.listId}
                 deleteTaskFromList={deleteTaskFromList}
+                back={back}
             />
             :
             <List.Section>
