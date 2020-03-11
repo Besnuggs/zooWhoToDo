@@ -91,6 +91,19 @@ const App = () => {
   const deleteTaskList = (id) => {
     const toDoLists = user.toDoLists.filter((taskList) => taskList.id !== id);
     setUserData({...user, toDoLists: toDoLists});
+    //Need to update AsyncStorage
+}
+
+const deleteTaskFromList = (id, taskId) => {
+  //index to taskId as that's what is serving as key in displaylist map.
+  const toDoLists = toDoLists.map((list) => {
+    if(list.id === id){
+      list.tasks.filter((task) => task.id !== taskId);
+    }
+    return list;
+  })
+  setUserData({...user, toDoLists})
+  //Need to update AsyncStorage
 }
 
   const [user, setUserData] = useState({
@@ -111,6 +124,7 @@ const App = () => {
             lists={user.toDoLists}
             name={user.name}
             deleteTaskList={deleteTaskList}
+            deleteTaskFromList={deleteTaskFromList}
           />
         : 
         <Landing 

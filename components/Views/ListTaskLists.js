@@ -9,7 +9,7 @@ import {List, Colors} from 'react-native-paper';
 import DisplayList from './DisplayList';
 
 const ListTaskLists = (props) => {
-    const {name, lists, deleteTaskList} = props;
+    const {name, lists, deleteTaskList, deleteTaskFromList} = props;
 
     useEffect(() => {
         setListData({...listData, listToDisplay: lists})
@@ -47,15 +47,14 @@ const ListTaskLists = (props) => {
 
     const displaySelectedList = (id) => {
         const listToDisplay = lists.filter((list) => list.id === id)[0],
-            listName = listToDisplay.name;
-        setListData({...listData, displayList: true, listToDisplay: listToDisplay.tasks, listName});
+            listName = listToDisplay.name,
+            listId = listToDisplay.id;
+        setListData({...listData, displayList: true, listToDisplay: listToDisplay.tasks, listName, listId});
     }
 
-    const deleteTaskFromList = (id) => {
-        const listToDisplay
-    }
+    
 
-    const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName})
+    const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName, listId})
 
     return(
         <View>
@@ -63,6 +62,7 @@ const ListTaskLists = (props) => {
             <DisplayList 
                 listToDisplay={listData.listToDisplay}
                 listName={listData.listName}
+                deleteTaskFromList={deleteTaskFromList}
             />
             :
             <List.Section>
