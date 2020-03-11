@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {
         View, 
         Text,
@@ -8,7 +8,11 @@ import {
 import {List, Colors} from 'react-native-paper';
 
 const ListTaskLists = (props) => {
-    const {name, lists} = props
+    const {name, lists, deleteTaskList} = props;
+
+    useEffect(() => {
+        setListData({...listData, listToDisplay: lists})
+    }, [lists])
 
     const renderUsersLists = () => {
        return lists.map((list) => {
@@ -21,9 +25,9 @@ const ListTaskLists = (props) => {
                     left={props => <List.Icon 
                                     icon="book" 
                                     color={Colors.green900}
-                                    
                                     >
-                                    </List.Icon>}
+                                    </List.Icon>
+                         }
                     right={props => <TouchableOpacity
                                         onPress={() => deleteTaskList(list.id)}
                                     >
@@ -33,15 +37,12 @@ const ListTaskLists = (props) => {
                                         >
                                         </List.Icon>
                                     </TouchableOpacity>
-                                    }
+                           }
                 />  
             )
         })
     }
-
-    const deleteTaskList = (id) => {
-        console.log(id, 'id to be deleted')
-    }
+    
 
     const displaySelectedList = (id) => {
         const listToDisplay = lists.filter((list) => list.id === id)[0].tasks;

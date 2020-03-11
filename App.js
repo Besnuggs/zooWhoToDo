@@ -88,6 +88,11 @@ const App = () => {
     }
   }
 
+  const deleteTaskList = (id) => {
+    const toDoLists = user.toDoLists.filter((taskList) => taskList.id !== id);
+    setUserData({...user, toDoLists: toDoLists});
+}
+
   const [user, setUserData] = useState({
     name: '',
     newUser: '',
@@ -95,6 +100,7 @@ const App = () => {
     displayLists: false
   });
 
+  // console.log(user.toDoLists)
   return(
     <View
     style={styles.container}
@@ -104,7 +110,7 @@ const App = () => {
           <ListTaskLists
             lists={user.toDoLists}
             name={user.name}
-
+            deleteTaskList={deleteTaskList}
           />
         : 
         <Landing 
@@ -128,12 +134,6 @@ const styles = StyleSheet.create({
     marginTop: 1,
     height: '100%',
     width: '100%'
-  },
-  logo: {
-
-  },
-  displayText: {
-
   }
 })
 
