@@ -62,6 +62,7 @@ const ListTaskLists = (props) => {
             <DisplayList 
                 listToDisplay={listData.listToDisplay}
                 listName={listData.listName}
+                listId={listData.listId}
                 deleteTaskFromList={deleteTaskFromList}
             />
             :
