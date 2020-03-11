@@ -25,7 +25,7 @@ const App = () => {
     'okay3',
     'okay4',
     ],
-    uuid: 1,
+    id: 1,
     dateCreated: date.toDateString()
     },
     {
@@ -37,7 +37,7 @@ const App = () => {
     'okay3',
     'okay4',
     ],
-    uuid: 2,
+    id: 2,
     dateCreated: date.toDateString()
     },
     {
@@ -49,7 +49,7 @@ const App = () => {
     'okay3',
     'okay4',
     ],
-    uuid: 3,
+    id: 3,
     dateCreated: date.toDateString()
     }
   ]
@@ -84,14 +84,14 @@ const App = () => {
     if(!user.newUser){
       Alert.alert('Error','Please enter your first name to save ToDo lists.', [{text: 'Ok'}]);
     } else {
-      setUserData({displayLists: true, name: user.newUser})
+      setUserData({displayLists: true, name: user.newUser, toDoLists: testList})
     }
   }
 
   const [user, setUserData] = useState({
     name: '',
     newUser: '',
-    toDoLists: testList,
+    toDoLists: [],
     displayLists: false
   });
 

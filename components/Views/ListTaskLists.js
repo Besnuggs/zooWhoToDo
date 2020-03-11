@@ -3,20 +3,24 @@ import {View,
         Text,
         StyleSheet
         } from 'react-native';
-import {List} from 'react-native-paper';
+import {List, Colors} from 'react-native-paper';
 
 const ListTaskLists = (props) => {
     const {name, lists} = props
-    console.log(lists, props, 'list task results')
 
     const renderUsersLists = () => {
-        console.log(lists)
-        lists.map((list) => {
-            <List.Item
-                onPress={() => displaySelectedList(list.uuid)}
-            >
-                {list.name}
-            </List.Item>
+       return lists.map((list) => {
+           console.log(list)
+            return (
+                <List.Item
+                    key={list.id}
+                    title={list.name}
+                    style={styles.listItem}
+                    onPress={() => displaySelectedList(list.id)}
+                    left={props => <List.Icon icon="delete"></List.Icon>}
+                    right={props => <List.Icon icon="delete" color={Colors.red900}></List.Icon>}
+                />  
+            )
         })
     }
 
@@ -31,7 +35,7 @@ const ListTaskLists = (props) => {
     return(
         <List.Section>
             <List.Subheader>{name}'s ToDo List</List.Subheader>
-            {renderUsersLists}
+            {renderUsersLists()}
         </List.Section>
     )
 }
@@ -39,6 +43,9 @@ const ListTaskLists = (props) => {
 const styles = StyleSheet.create({
     container: {
 
+    },
+    listItem: {
+        width: 300
     }
 })
 
