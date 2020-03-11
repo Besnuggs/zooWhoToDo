@@ -46,17 +46,23 @@ const ListTaskLists = (props) => {
     
 
     const displaySelectedList = (id) => {
-        const listToDisplay = lists.filter((list) => list.id === id)[0].tasks;
-        setListData({displayList: true, listToDisplay});
+        const listToDisplay = lists.filter((list) => list.id === id)[0],
+            listName = listToDisplay.name;
+        setListData({...listData, displayList: true, listToDisplay: listToDisplay.tasks, listName});
     }
 
-    const [listData, setListData] = useState({displayList: false, listToDisplay: []})
+    const deleteTaskFromList = (id) => {
+        const listToDisplay
+    }
+
+    const [listData, setListData] = useState({displayList: false, listToDisplay: [], listName})
 
     return(
         <View>
         {displayList ? 
             <DisplayList 
                 listToDisplay={listData.listToDisplay}
+                listName={listData.listName}
             />
             :
             <List.Section>
