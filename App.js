@@ -96,7 +96,6 @@ const App = () => {
 
 const deleteTaskFromList = (id, taskId) => {
   //index to taskId as that's what is serving as key in displaylist map.
-  
   const toDoLists = user.toDoLists.map((list) => {
     console.log('LISSSTS', list)
     if(list.id === id){
@@ -105,7 +104,6 @@ const deleteTaskFromList = (id, taskId) => {
     console.log('list:', list)
     return list;
   })
-  console.log('EVERYTGIG', toDoLists)
   setUserData({...user, toDoLists: toDoLists})
   //Need to update AsyncStorage
 }

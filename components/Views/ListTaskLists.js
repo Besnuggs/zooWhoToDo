@@ -7,6 +7,7 @@ import {
         } from 'react-native';
 import {List, Colors} from 'react-native-paper';
 import DisplayList from './DisplayList';
+import PrimaryButton from '../Utility/PrimaryButton'
 
 const ListTaskLists = (props) => {
     const {name, lists, deleteTaskList, deleteTaskFromList} = props;
@@ -14,7 +15,6 @@ const ListTaskLists = (props) => {
     useEffect(() => {  
         if(listData.displayList){
             const listToDisplay = lists.filter((list) => list.id === listData.listId)[0].tasks
-            console.log(lists, listToDisplay, 'updated LISTS')
             setListData({...listData, listToDisplay})
         }   
     }, [lists])
@@ -49,7 +49,6 @@ const ListTaskLists = (props) => {
     }
     
     const back = () => {
-        console.log('back?')
         setListData({...listData, displayList: false, listToDisplay: [], listName: '', listId: null})
     }
 
@@ -75,7 +74,14 @@ const ListTaskLists = (props) => {
             :
             <List.Section>
                 <List.Subheader>{name}'s ToDo List</List.Subheader>
-                {renderUsersLists()}
+                    {listData.listToDisplay.length === 0 ?
+                        <PrimaryButton
+                            handlePress={createList}
+                            label="Create a ToDo List!"
+                        />
+                    : 
+                        renderUsersLists()
+                    }
             </List.Section>
         }
         </View>
